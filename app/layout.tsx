@@ -7,6 +7,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { MySidebar } from "./components/MainSidebar";
 import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
+import WebSidebar from "./components/WebSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,24 @@ export default function RootLayout({
   },[])
 
 
+  const [openWebSidebar, setOpenWebSidebar] = useState(true)
+
+  useEffect(() => {
+      const handleResize = () => {
+        setOpenWebSidebar(window.innerWidth >= 950)}
+
+
+        handleResize()
+        window.addEventListener("resize" , handleResize)
+
+        return () => {
+          window.removeEventListener("resize", handleResize)
+        }
+        
+      
+  },[])
+
+
 
   return (
     <SidebarProvider open={openSidebar}>
@@ -60,7 +79,10 @@ export default function RootLayout({
         <SidebarTrigger/>
         <Navbar/>
         </div>
+        <div className="flex ">
         {children}
+        <WebSidebar open={openWebSidebar}/>
+        </div>
         </body>
     </html>
     </SidebarInset>
