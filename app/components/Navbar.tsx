@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { Popover, PopoverHeader, PopoverTrigger } from "@/components/ui/popover";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { Separator } from "@/components/ui/separator";
+import { BlogCreatedCard, BlogEditedCard, BlogLikedCard, CommentCard, NotificationSystemCard } from "./NotificationItemCards";
 
 
 
@@ -184,23 +185,40 @@ const filteredBlog = useMemo(() => {
               <PopoverTrigger>
               <Bell/>
               </PopoverTrigger>
-                <PopoverContent className=" min-w-[300px] min-h-[300px] outline-none p-2 rounded-md backdrop-blur-md mx-15 my-2 shadow-2xl  border border-black/5 " >
-                  <div className="flex flex-col justify-start items-start gap-2 size-full bg-white p-4 rounded-md border border-black/10 ">
+                <PopoverContent className="w-[400px] outline-none p-2 rounded-md backdrop-blur-md mx-15 my-2 shadow-2xl  border border-black/5 z-100" >
+                  <div className="flex flex-col justify-start items-start gap-2 size-full max-h-[400px] overflow-scroll hide-scrollbar  bg-white p-4 rounded-md border border-black/10 ">
                   <PopoverHeader className="flex flex-row justify-between items-end w-full">
                     <h1 className="text-[18px]">Notifications</h1>
                     <a className="text-xs text-blue-700">Mark all as read</a>
                   </PopoverHeader>
-                  <Separator className=""/>
-                  <div className="flex justify-start items-center gap-4 mt-2  text-xs">
-                    <a className="text-xs">Inbox</a>
-                    <a className="text-xs">Unread</a>
-                  </div>
                   <Separator/>
-                  <div className="flex flex-col justify-center items-center gap-2 w-full h-full mt-8 mb-4">
+                  <div className="flex justify-start items-center gap-4 mt-2  text-xs">
+                    <a className="text-xs border-b border-black pb-1">Inbox</a>
+                    <a className="text-xs pb-1">Unread</a>
+                  </div>
+                  <Separator className="relative bottom-2"/>
+                  <div className="flex flex-col justify-start items-start gap-2 ">
+                    <div className="flex flex-col justify-start items-start gap-4">
+                    <h1 className="text-sm ">Today</h1>
+                            <BlogLikedCard/>
+                            <BlogCreatedCard/>
+                    </div>
+                    <div className="flex flex-col justify-start items-start gap-4">
+                    <h1 className="text-sm ">Yesterday</h1>
+                    <CommentCard/>
+                    <BlogEditedCard/>
+                    </div>
+                  <div className="flex flex-col justify-start items-start gap-4">
+                    <h1 className="text-sm ">Past 7 days</h1>
+                    <BlogCreatedCard/>
+                  </div>
+                  </div>
+                  {/* <div className="flex flex-col justify-center items-center gap-2 w-full h-full mt-8 mb-4">
                     <div className="p-4 bg-black/10 rounded-full mb-4"><InboxIcon/></div>
                     <a className="text-[20px]">You're all set</a>
                     <a className="max-w-[300px] text-black/40 text-center">We will keep you updated on any further notification</a>
-                  </div>
+                  </div> */}
+
                   </div>
                 </PopoverContent>
             </Popover>
