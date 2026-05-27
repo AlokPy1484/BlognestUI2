@@ -7,9 +7,14 @@ import { Dialog,
   DialogHeader,
   DialogTitle,
   DialogFooter, } from "@/components/ui/dialog";
-import { Bell, Menu, PenLine, Search } from "lucide-react";
+import { Bell, InboxIcon, Menu, PenLine, Search } from "lucide-react";
 import { Kbd } from "@/components/ui/kbd"
 import { useMemo, useState } from "react";
+import { Popover, PopoverHeader, PopoverTrigger } from "@/components/ui/popover";
+import { PopoverContent } from "@radix-ui/react-popover";
+import { Separator } from "@/components/ui/separator";
+
+
 
 
 
@@ -106,7 +111,7 @@ const filteredBlog = useMemo(() => {
 
 
     return(
-        <div className="flex justify-between items-center px-2 w-full py-4 bg-white text-black ">
+        <div className=" inset-0 flex justify-between items-center px-2 w-full py-4 bg-white text-black border-b border-black/10 z">
             <div className="flex justify-between items-center gap-4">
                  <button className="font-serif font-semibold text-2xl">BlogNest</button>
                  <Dialog>
@@ -175,7 +180,30 @@ const filteredBlog = useMemo(() => {
             <div className="flex justify-center items-center gap-4">
             {/* <Button variant={"outline"} className="flex md:hidden"><Search/></Button> */}
             <Button className="flex gap-2 md:px-4 font-sans font-bold"><PenLine/><a >Write</a> </Button>
-            <Button variant={"outline"} ><Bell/></Button>
+            <Popover>
+              <PopoverTrigger>
+              <Bell/>
+              </PopoverTrigger>
+                <PopoverContent className=" min-w-[300px] min-h-[300px] outline-none p-2 rounded-md backdrop-blur-md mx-15 my-2 shadow-2xl  border border-black/5 " >
+                  <div className="flex flex-col justify-start items-start gap-2 size-full bg-white p-4 rounded-md border border-black/10 ">
+                  <PopoverHeader className="flex flex-row justify-between items-end w-full">
+                    <h1 className="text-[18px]">Notifications</h1>
+                    <a className="text-xs text-blue-700">Mark all as read</a>
+                  </PopoverHeader>
+                  <Separator className=""/>
+                  <div className="flex justify-start items-center gap-4 mt-2  text-xs">
+                    <a className="text-xs">Inbox</a>
+                    <a className="text-xs">Unread</a>
+                  </div>
+                  <Separator/>
+                  <div className="flex flex-col justify-center items-center gap-2 w-full h-full mt-8 mb-4">
+                    <div className="p-4 bg-black/10 rounded-full mb-4"><InboxIcon/></div>
+                    <a className="text-[20px]">You're all set</a>
+                    <a className="max-w-[300px] text-black/40 text-center">We will keep you updated on any further notification</a>
+                  </div>
+                  </div>
+                </PopoverContent>
+            </Popover>
             <Button className="rounded-full p-0">
                 <Avatar>
                 <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}

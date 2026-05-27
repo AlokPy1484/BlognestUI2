@@ -5,6 +5,11 @@ import BlogFeedCardSmall from "./BlogFeedCardSmall";
 import { cn } from "@/lib/utils";
 
 
+// const ProfileInfo = [
+//     {icon: }
+// ]
+
+
 export default function WebSidebar(props){
 
     interface RecommenedPeoplesType {
@@ -22,7 +27,7 @@ export default function WebSidebar(props){
 
 
     return(
-        <ScrollArea className= {cn(props.open ? "md:flex "  : "md:hidden" ,"hidden h-full")}> 
+        <ScrollArea className= {cn(props.open ? "md:flex "  : "md:hidden" ,"flex justify-end")}> 
         <div className="flex flex-col justify-start itemns-center border border-zinc-100 gap-6 p-4 w-[350px]">
             <SubscriptionBanner/>
             <div className="flex flex-col justify-center items-start gap-4 p-2">
@@ -41,4 +46,24 @@ export default function WebSidebar(props){
         <ScrollBar/>
         </ScrollArea>
     )
+}
+
+
+
+export function ProfileSideBar(){
+
+    return(
+
+
+    <div className="flex flex-col justify-start items-start gap-4 p-4 border border-black/10">
+        <div className="flex flex-col justify-start items-start gap-1 w-full">
+            <h1 className="text-16px font-bold">Jack Danial</h1>
+            <p className="text-xs text-black/60">I'm just a random Brazilian guy with a passion for front-end development and learning things.</p>
+            <div className="flex justify-start gap-2">
+                {}
+
+            </div>
+        </div>
+
+    </div>)
 }

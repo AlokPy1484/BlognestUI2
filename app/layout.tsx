@@ -68,24 +68,20 @@ export default function RootLayout({
 
 
   return (
-    <SidebarProvider open={openSidebar}>
-      <MySidebar />
-      <SidebarInset>
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <div className="flex flex-row justify-start items-center">
-        <SidebarTrigger/>
-        <Navbar/>
+        <div className="flex flex-row justify-start items-center z-10">
+        {/* <SidebarTrigger className="bg-white h-full"/> */}
+        {/* <Navbar/> */}
         </div>
         <div className="flex ">
         {children}
-        <WebSidebar open={openWebSidebar}/>
+        {/* <WebSidebar open={openWebSidebar}/> */}
         </div>
         </body>
     </html>
-    </SidebarInset>
-    </SidebarProvider>
+
   );
 }
