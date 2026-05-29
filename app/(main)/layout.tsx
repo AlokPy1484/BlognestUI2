@@ -2,22 +2,14 @@
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { MySidebar } from "./components/MainSidebar";
-import Navbar from "./components/Navbar";
+import { MySidebar } from "../components/MainSidebar";
+import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
-import WebSidebar from "./components/WebSidebar";
+import WebSidebar from "../components/WebSidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // export const metadata: Metadata = {
 //   title: "BlogNest",
@@ -69,13 +61,25 @@ export default function RootLayout({
 
   return (
 
+          <SidebarProvider open={true}>
+      <MySidebar />
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      className=" h-full antialiased ">
       <body className="min-h-full flex flex-col">
-          {children}
+        <SidebarInset>
+        <div className="flex flex-row justify-start items-center z-10">
+        {/* <SidebarTrigger className="bg-white h-full"/> */}
+        <Navbar/>
+        </div>
+        <div className="flex ">
+        {children}
+        {/* <WebSidebar open={openWebSidebar}/> */}
+        </div>
+        </SidebarInset>
         </body>
     </html>
+    </SidebarProvider>
 
   );
 }

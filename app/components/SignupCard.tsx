@@ -47,7 +47,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 
 
 // type FormField = {
@@ -58,15 +57,20 @@ import { useRouter } from "next/navigation"
 
 
 const schema = z.object({
+    username: z.string(),
     email: z.string().email(),
-    password: z.string().min(8)
+    password: z.string().min(8),
+    confirm_Password: z.string()
+}).refine((data) => data.password === data.confirm_Password, {
+    message: "Password do not match",
+    path: ['confirm_Password']
 })
 
 type FormField = z.infer<typeof schema>
 
 
 
-export default function LoginCard(){
+export default function SignupCard(){
     
     // const formSchema = z.object({
     //     email: z.email(),
@@ -91,21 +95,28 @@ export default function LoginCard(){
 
     const [showPassword, setShowPassword] = useState(false)
 
-    const router = useRouter()
-
-
 
     return(
         <div className="p-2 border border-black/10 backdrop-blur-[2px] rounded-2xl z-10">
             <Card className="flex justify-between border-none">
                 <CardHeader>
-                    <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
                     <CardDescription className="text-black/80">Enter your credential to access your account</CardDescription>
                 </CardHeader>
                 <CardContent className="">
 
                     <form id="loginForm" onSubmit={handleSubmit(onSubmit)}>
-                    <FieldGroup>
+                    <FieldGroup className="flex flex-col justify-start gap-2">
+                    <Field>
+                    <FieldLabel htmlFor="username" className="text-black font-bold">Username</FieldLabel>
+                    <InputGroup >
+                    <InputGroupInput {...register("username")} type="string" placeholder="Enter your Username" />
+                    <InputGroupAddon>
+                        <MailIcon />
+                    </InputGroupAddon>
+                    </InputGroup>
+                    {errors && <a className="text-sm text-red-700">{errors.username?.message}</a>}
+                    </Field>
                     <Field>
                     <FieldLabel htmlFor="email" className="text-black font-bold">Email</FieldLabel>
                     <InputGroup >
@@ -128,7 +139,19 @@ export default function LoginCard(){
                     </InputGroupAddon>
                     </InputGroup>
                     {errors && <a className="text-sm text-red-700">{errors.password?.message}</a>}
-                    <FieldDescription onClick={() => {router.push("/forgot_password")}} className="flex justify-end w-full text-sm cursor-pointer">Forgot password?</FieldDescription>
+                    </Field>
+                    <Field>
+                    <FieldLabel className="font-bold" htmlFor="confirm_Password">Confirm Password</FieldLabel>
+                    <InputGroup >
+                    <InputGroupInput {...register("confirm_Password")} type={cn(showPassword? "text" : "password" )}  placeholder="Enter your password" />
+                    <InputGroupAddon>
+                        <LockIcon />
+                    </InputGroupAddon>
+                    <InputGroupAddon align={"inline-end"}  onClick={ () => {setShowPassword(prev => !prev)} } className="cursor-pointer" >
+                        { showPassword? <EyeOff/> :<Eye />}
+                    </InputGroupAddon>
+                    </InputGroup>
+                    {errors && <a className="text-sm text-red-700">{errors.confirm_Password?.message}</a>}
                     </Field>
                     <Button type="submit" className="flex gap-2 rounded-3xl py-6 text-[16px]">Sign in 
                         { isSubmitting ? <Loader className="animate-spin"/> : <ArrowRight/>}
@@ -157,7 +180,7 @@ export default function LoginCard(){
                 </div>
                 </CardContent>
                 <CardFooter>
-                    <p className="flex gap-1 justify-center items-center w-full ">Don't have an accont? <a href="/signup">Sign up</a></p>
+                    <p className="flex gap-1 justify-center items-center w-full ">Already have an accont? <a href="/login">Login</a></p>
                 </CardFooter>
                 </Card>
         </div>

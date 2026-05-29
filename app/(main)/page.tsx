@@ -2,11 +2,11 @@
 
 
 import { useEffect, useState } from "react";
-import Feed from "./components/Feed";
-import Navbar from "./components/Navbar";
-import WebSidebar, { ProfileSideBar } from "./components/WebSidebar";
+import Feed from "../components/Feed";
+import Navbar from "../components/Navbar";
+import WebSidebar, { ProfileSideBar } from "../components/WebSidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { MySidebar } from "./components/MainSidebar";
+import { MySidebar } from "../components/MainSidebar";
 import ProfilePage from "./profile/page";
 
 
@@ -53,14 +53,14 @@ export default function page(){
     // </div>
 
 
-      <SidebarProvider open={openSidebar}>
-      <MySidebar />
-      <SidebarInset>
+      // <SidebarProvider open={openSidebar}>
+      // <MySidebar />
+      // <SidebarInset>
     <html
       lang="en"
       className=" h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <Navbar/>
+        {/* <Navbar/> */}
 
         <div className="flex justify-between  w-full">
           
@@ -71,7 +71,7 @@ export default function page(){
         </div>
         </body>
     </html>
-    </SidebarInset>
-    </SidebarProvider>
+    // </SidebarInset>
+    // </SidebarProvider>
   )
 }

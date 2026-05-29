@@ -2,7 +2,8 @@ import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Share2, UserPlus } from "lucide-react";
 import Image from "next/image";
-import { BlogFeedCard } from "../components/BlogFeedCardSmall";
+import { BlogFeedCard } from "../../components/BlogFeedCardSmall";
+import { ProfileSideBar } from "../../components/WebSidebar";
 
 
 const BlogListing = [
@@ -104,6 +105,7 @@ export default function ProfilePage(){
 
 
     return(
+        <div className="flex justify-between items-start w-full">
         <div className="flex flex-col justify-start items-start gap-8  w-full">
             <Image src="https://images.unsplash.com/photo-1607453361165-c629a0d1839d?q=80&w=2848&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="banner" 
@@ -176,6 +178,8 @@ export default function ProfilePage(){
                 
                         </div>
             </div>
+            </div>
+            <ProfileSideBar/>
             </div>
     )
 }

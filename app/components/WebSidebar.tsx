@@ -3,11 +3,44 @@ import PeopleCard from "./PeopleCard";
 import SubscriptionBanner from "./SubsceiptionBanner";
 import BlogFeedCardSmall from "./BlogFeedCardSmall";
 import { cn } from "@/lib/utils";
+import { Cake, Link, Mail, Map } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 
-// const ProfileInfo = [
-//     {icon: }
-// ]
+const ProfileInfo = [
+    {   
+        id: 1,
+        name: "location",
+        icon: <Map/>,
+        content: "Maxico",
+    },
+    {
+        id: 2,
+        name: "date_joined",
+        icon: <Cake/>,
+        content: "joined on Mar 18, 2022"
+    },
+    {
+        id: 3,
+        name: "email",
+        icon: <Mail/>,
+        content: "jack2daniel@gmail.com"
+    },
+    {
+        id: 4,
+        name: "profileLink",
+        icon: <Link/>,
+        content: "htpps://jackdanial.blognet.io"
+    }
+]
+
+const peoples = [
+  { name: "Alice Johnson", description: "Software Engineer at Cornflakes" },
+  { name: "Bob Smith",     description: "UI/UX Designer at Cornflakes" },
+  { name: "Carol White",   description: "Marketing Lead at Cornflakes" },
+  { name: "David Brown",   description: "DevOps Engineer at Cornflakes" },
+  { name: "Eva Martinez",  description: "Product Manager at Cornflakes" },
+];
 
 
 export default function WebSidebar(props){
@@ -50,18 +83,43 @@ export default function WebSidebar(props){
 
 
 
-export function ProfileSideBar(){
+export function ProfileSideBar(props){
 
     return(
 
 
-    <div className="flex flex-col justify-start items-start gap-4 p-4 border border-black/10">
-        <div className="flex flex-col justify-start items-start gap-1 w-full">
-            <h1 className="text-16px font-bold">Jack Danial</h1>
-            <p className="text-xs text-black/60">I'm just a random Brazilian guy with a passion for front-end development and learning things.</p>
-            <div className="flex justify-start gap-2">
-                {}
+    <div className={cn(props.open? "flex" : "hodden",  "flex-col justify-start items-start gap-4 p-4 border border-black/10 w-[450px]")}>
+        <div className="flex flex-col justify-start items-start gap-4 w-full">
+            <h1 className="text-xl font-bold">Jack Danial</h1>
+            <p className="text-sm text-black/60">I'm just a random Brazilian guy with a passion for front-end development and learning things.</p>
+            <div className="flex justify-start flex-wrap gap-4">
+                {ProfileInfo.map((data) => (
+                    <div className="flex items-center gap-1 text-sm"> 
+                        {data.icon}
+                        <a>{data.content}</a>
+                    </div>
+                ))}
 
+            </div>
+            <Separator/>
+
+            <div className="flex flex-col justify-start items-start text-sm">
+                <h1  className="font-semibold">Education</h1>
+                <a>Masters degree in Mechanical Engineering</a>
+            </div>
+
+            <div className="flex flex-col justify-start items-start text-sm">
+                <h1 className="font-semibold">Work</h1>
+                <a>Project manager at Infosys</a>
+            </div>
+            <Separator/>
+
+            <h1 className="text-xl font-semibold">Following</h1>
+            <div className="flex flex-col justify-start items-start gap-2">
+                {peoples.map((people) => (
+                    <PeopleCard username={people.name} description={people.description}/>
+                ) )}
+                    
             </div>
         </div>
 

@@ -101,13 +101,14 @@ const [activeCard, setActiveCard] = useState(recentSearch[0])
 
 const [search, setSearch] = useState("")
 
+const [viewBlur, setViewBlur] = useState(false)
+
 const filteredBlog = useMemo(() => {
   if (!search.trim()) return []
 
   return trendingNow.filter((blog) => 
     blog.title.toLowerCase().includes(search.toLowerCase())
   )
-
 },[search])
 
 
@@ -182,8 +183,9 @@ const filteredBlog = useMemo(() => {
             {/* <Button variant={"outline"} className="flex md:hidden"><Search/></Button> */}
             <Button className="flex gap-2 md:px-4 font-sans font-bold"><PenLine/><a >Write</a> </Button>
             <Popover>
-              <PopoverTrigger>
+              <PopoverTrigger onClick={() => {setViewBlur(prev => !prev)}}>
               <Bell/>
+              {viewBlur &&  <div className="fixed inset-0 isolate z-50 bg-black/10 backdrop-blur-xs  w-screen h-screen "></div>}
               </PopoverTrigger>
                 <PopoverContent className="w-[400px] outline-none p-2 rounded-md backdrop-blur-md mx-15 my-2 shadow-2xl  border border-black/5 z-100" >
                   <div className="flex flex-col justify-start items-start gap-2 size-full max-h-[400px] overflow-scroll hide-scrollbar  bg-white p-4 rounded-md border border-black/10 ">
