@@ -88,7 +88,7 @@ export function ProfileSideBar(props){
     return(
 
 
-    <div className={cn(props.open? "flex" : "hodden",  "flex-col justify-start items-start gap-4 p-4 border border-black/10 w-[450px]")}>
+    <div className={cn(props.open? "flex" : "hidden",  "flex-col justify-start items-start gap-4 p-4 border border-black/10 w-[450px]")}>
         <div className="flex flex-col justify-start items-start gap-4 w-full">
             <h1 className="text-xl font-bold">Jack Danial</h1>
             <p className="text-sm text-black/60">I'm just a random Brazilian guy with a passion for front-end development and learning things.</p>

@@ -1,9 +1,12 @@
+"use client"
+
 import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Share2, UserPlus } from "lucide-react";
 import Image from "next/image";
 import { BlogFeedCard } from "../../components/BlogFeedCardSmall";
 import { ProfileSideBar } from "../../components/WebSidebar";
+import { useEffect, useState } from "react";
 
 
 const BlogListing = [
@@ -104,6 +107,25 @@ const BlogListing = [
 export default function ProfilePage(){
 
 
+
+      const [openWebSidebar, setOpenWebSidebar] = useState(true)
+    
+      useEffect(() => {
+          const handleResize = () => {
+            setOpenWebSidebar(window.innerWidth >= 950)}
+    
+    
+            handleResize()
+            window.addEventListener("resize" , handleResize)
+    
+            return () => {
+              window.removeEventListener("resize", handleResize)
+            }
+            
+          
+      },[])
+
+
     return(
         <div className="flex justify-between items-start w-full">
         <div className="flex flex-col justify-start items-start gap-8  w-full">
@@ -179,7 +201,7 @@ export default function ProfilePage(){
                         </div>
             </div>
             </div>
-            <ProfileSideBar/>
+            <ProfileSideBar open={openWebSidebar}/>
             </div>
     )
 }
