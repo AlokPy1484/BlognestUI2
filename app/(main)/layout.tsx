@@ -23,21 +23,21 @@ export default function RootLayout({
 }>) {
 
   
-  // const [openSidebar, setOpenSidebar] = useState(true)
+  const [openSidebar, setOpenSidebar] = useState(true)
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setOpenSidebar(window.innerWidth >= 1205)
-  //   }
+  useEffect(() => {
+    const handleResize = () => {
+      setOpenSidebar(window.innerWidth >= 1205)
+    }
 
-  //   handleResize()
+    handleResize()
 
-  //   window.addEventListener("resize", handleResize)
+    window.addEventListener("resize", handleResize)
 
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize)
-  //   }
-  // },[])
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  },[])
 
 
   // const [openWebSidebar, setOpenWebSidebar] = useState(true)
@@ -61,7 +61,7 @@ export default function RootLayout({
 
   return (
 
-          <SidebarProvider open={true}>
+          <SidebarProvider open={openSidebar}>
       <MySidebar />
     <html
       lang="en"

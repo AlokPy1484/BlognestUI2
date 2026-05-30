@@ -60,8 +60,8 @@ export default function WebSidebar(props){
 
 
     return(
-        <ScrollArea className= {cn(props.open ? "md:flex "  : "md:hidden" ,"flex justify-end")}> 
-        <div className="flex flex-col justify-start itemns-center border border-zinc-100 gap-6 p-4 w-[350px]">
+        <ScrollArea className= {cn(props.open ? "flex "  : "hidden" ,"justify-end")}> 
+        <div className="flex flex-col justify-start itemns-center border border-black/10 bg-neutral-100/50 gap-6 p-4 w-[350px]">
             <SubscriptionBanner/>
             <div className="flex flex-col justify-center items-start gap-4 p-2">
                 <a className="font-bold text-[16px] pb-2">People you might be interested</a>
