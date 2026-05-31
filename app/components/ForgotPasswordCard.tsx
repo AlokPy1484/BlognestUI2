@@ -24,7 +24,13 @@ import { ArrowLeft, ArrowRight, Eye, EyeOff, LockIcon, MailIcon } from "lucide-r
 import { useState } from "react"
 
 
-export function ForgotPasswordEmailCard({setStepCounter,stepCounter}){
+interface ChildProps{
+    stepCounter: number,
+    setStepCounter: (value:number) => void
+}
+
+
+export function ForgotPasswordEmailCard({setStepCounter,stepCounter}:ChildProps){
 
 
 // onClick={() => {setStepCounter(1)}} 
@@ -63,7 +69,8 @@ export function ForgotPasswordEmailCard({setStepCounter,stepCounter}){
 
 
 
-export function ForgotPasswordOTPCard({setStepCounter, stepCounter}){
+
+export function ForgotPasswordOTPCard({setStepCounter, stepCounter}:ChildProps){
 
     return(
         <div className="p-2 border border-black/10 backdrop-blur-[2px] rounded-2xl z-10">
@@ -102,9 +109,12 @@ export function ForgotPasswordOTPCard({setStepCounter, stepCounter}){
 }
 
 
+interface ResetChildProps{
+    stepCounter: number
+}
 
 
-export function ForgotPasswordResetCard({stepCounter}){
+export function ForgotPasswordResetCard({stepCounter}:ResetChildProps){
 
     const [showPassword, setShowPassword] = useState(false)
 

@@ -13,7 +13,7 @@ import { useMemo, useState } from "react";
 import { Popover, PopoverHeader, PopoverTrigger } from "@/components/ui/popover";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { Separator } from "@/components/ui/separator";
-import { BlogCreatedCard, BlogEditedCard, BlogLikedCard, CommentCard, NotificationSystemCard } from "./NotificationItemCards";
+import { BlogCreatedCard, BlogEditedCard, BlogLikedCard, CommentCard } from "./NotificationItemCards";
 
 
 

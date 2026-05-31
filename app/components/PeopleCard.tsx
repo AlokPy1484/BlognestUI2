@@ -35,7 +35,7 @@ export default function PeopleCard(props:PeoplesType){
 }
 
 
-export function PeopleCardFeed(props){
+export function PeopleCardFeed(props:PeoplesType){
 
     return(
         <div className="flex justify-between items-center px-1 hover:bg-zinc-100 rounded-md">

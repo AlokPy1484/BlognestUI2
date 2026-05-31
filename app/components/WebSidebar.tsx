@@ -43,7 +43,11 @@ const peoples = [
 ];
 
 
-export default function WebSidebar(props){
+interface SidebarProps{
+    open: boolean
+}
+
+export default function WebSidebar(props:SidebarProps){
 
     interface RecommenedPeoplesType {
         username: string,
@@ -60,7 +64,7 @@ export default function WebSidebar(props){
 
 
     return(
-        <ScrollArea className= {cn(props.open ? "flex "  : "hidden" ,"justify-end")}> 
+        <ScrollArea className= {cn(props.open ? "md:flex "  : "hidden" ,"hidden justify-end")}> 
         <div className="flex flex-col justify-start itemns-center border border-black/10 bg-neutral-100/50 gap-6 p-4 w-[350px]">
             <SubscriptionBanner/>
             <div className="flex flex-col justify-center items-start gap-4 p-2">
@@ -83,12 +87,12 @@ export default function WebSidebar(props){
 
 
 
-export function ProfileSideBar(props){
+export function ProfileSideBar(props:SidebarProps){
 
     return(
 
 
-    <div className={cn(props.open? "flex" : "hidden",  "flex-col justify-start items-start gap-4 p-4 border border-black/10 w-[450px]")}>
+    <div className={cn(props.open? "md:flex" : "hidden",  "hidden flex-col justify-start items-start gap-4 p-4 border border-black/10 w-[450px]")}>
         <div className="flex flex-col justify-start items-start gap-4 w-full">
             <h1 className="text-xl font-bold">Jack Danial</h1>
             <p className="text-sm text-black/60">I'm just a random Brazilian guy with a passion for front-end development and learning things.</p>

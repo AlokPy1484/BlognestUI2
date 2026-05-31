@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PeopleCard, { PeopleCardFeed } from "./PeopleCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { string } from "zod";
 
 export default function BlogFeedCardSmall(){
 
@@ -30,7 +31,18 @@ export default function BlogFeedCardSmall(){
 
 
 
-export function BlogFeedCard(props){
+interface BlogCardContent {
+    author: string,
+    description: string,
+    blogTitle: string,
+    blogDescription: string,
+    imageLink: string
+
+}
+
+
+
+export function BlogFeedCard(props:BlogCardContent){
 
 
     return(
@@ -38,8 +50,8 @@ export function BlogFeedCard(props){
         <PeopleCardFeed username={props.author} description={props.description}/>  
         <div className="flex justify-between items-center gap-8">
             <div className="flex flex-col justify-center items-start gap-2">
-                <a className="font-bold md:text-2xl">{props.blogTitle}</a>
-                <a className="text-zinc-600 text-[12px] md:text-md">{props.blogDescription}</a>
+                <a className="font-bold md:text-2xl text-sm line-clamp-2">{props.blogTitle}</a>
+                <a className="text-zinc-600 text-[12px] md:text-md line-clamp-2">{props.blogDescription}</a>
             </div>
             <Image src={props.imageLink}
              alt="thumbnail" width={150} height={100}
