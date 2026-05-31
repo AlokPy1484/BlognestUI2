@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation"
 
 
 
@@ -37,8 +38,13 @@ export default function PeopleCard(props:PeoplesType){
 
 export function PeopleCardFeed(props:PeoplesType){
 
+
+    const router = useRouter()
+
+
     return(
-        <div className="flex justify-between items-center px-1 hover:bg-zinc-100 rounded-md">
+        <div className="flex justify-between items-center px-1 hover:bg-zinc-100 rounded-md cursor-pointer" 
+        onClick={ () => {router.push("/profile")}}>
             <div className="flex justify-center items-center gap-2">
             <Avatar>
             <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}

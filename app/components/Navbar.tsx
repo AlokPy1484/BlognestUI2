@@ -14,6 +14,7 @@ import { Popover, PopoverHeader, PopoverTrigger } from "@/components/ui/popover"
 import { PopoverContent } from "@radix-ui/react-popover";
 import { Separator } from "@/components/ui/separator";
 import { BlogCreatedCard, BlogEditedCard, BlogLikedCard, CommentCard } from "./NotificationItemCards";
+import { useRouter } from "next/navigation";
 
 
 
@@ -112,10 +113,13 @@ const filteredBlog = useMemo(() => {
 },[search])
 
 
+const router = useRouter()
+
+
     return(
         <div className=" inset-0 flex justify-between items-center px-2 w-full py-4 bg-white text-black border-b border-black/10 z">
             <div className="flex justify-between items-center gap-4">
-                 <button className="font-serif font-semibold text-2xl">BlogNest</button>
+                 <button onClick={() => {router.push("/")}} className="font-serif font-semibold text-2xl cursor-pointer">BlogNest</button>
                  <Dialog>
                     <DialogTrigger>
                 <div className="flex justify-center gap-4 p-1 items-center rounded-2xl bg-zinc-100">
@@ -224,7 +228,7 @@ const filteredBlog = useMemo(() => {
                   </div>
                 </PopoverContent>
             </Popover>
-            <Button className="rounded-full p-0">
+            <Button onClick={() => {router.push("/login")}} className="cursor-pointer rounded-full p-0">
                 <Avatar>
                 <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}
                 alt="Profile Picture"

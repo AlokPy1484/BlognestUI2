@@ -45,6 +45,7 @@ interface BlogCardContent {
 export function BlogFeedCard(props:BlogCardContent){
 
 
+
     return(
         <div className="flex flex-col justify-start items-start gap-2 ">
         <PeopleCardFeed username={props.author} description={props.description}/>  
@@ -56,6 +57,7 @@ export function BlogFeedCard(props:BlogCardContent){
             <Image src={props.imageLink}
              alt="thumbnail" width={150} height={100}
              className="rounded-sm w-20 md:w-50"/>
+             
         </div>
         </div>
     )

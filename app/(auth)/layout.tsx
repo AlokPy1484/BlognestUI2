@@ -1,3 +1,7 @@
+"use client"
+
+
+
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 

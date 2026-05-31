@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { ArrowLeft, ArrowRight, Eye, EyeOff, LockIcon, MailIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 
@@ -118,6 +119,8 @@ export function ForgotPasswordResetCard({stepCounter}:ResetChildProps){
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const router = useRouter()
+
     return(
         <div className="p-2 border border-black/10 backdrop-blur-[2px] rounded-2xl z-10">
         <Card className="flex justify-between border-none w-[350px]">
@@ -152,7 +155,7 @@ export function ForgotPasswordResetCard({stepCounter}:ResetChildProps){
                     </InputGroupAddon>
                     </InputGroup>
                     </Field>
-                    <Button type="submit" className="flex gap-2 rounded-3xl py-6 text-[16px]">Reset Password
+                    <Button onClick={() => {router.push("/")}} type="submit" className="flex gap-2 rounded-3xl py-6 text-[16px] cursor-pointer">Reset Password
                             <ArrowRight/>
                         </Button>
                     </FieldGroup>
