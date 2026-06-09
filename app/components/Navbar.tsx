@@ -1,3 +1,5 @@
+"use client"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, 
@@ -117,14 +119,15 @@ const router = useRouter()
 
 
     return(
-        <div className=" inset-0 flex justify-between items-center px-2 w-full py-4 bg-white text-black border-b border-black/10 z">
-            <div className="flex justify-between items-center gap-4">
+        <div className=" inset-0 flex justify-between items-center px-2 w-full max-w-screen py-4 bg-white text-black border-b border-black/10 z-100">
+            <div className="flex justify-between items-center gap-2 md:gap-4">
                  <button onClick={() => {router.push("/")}} className="font-serif font-semibold text-2xl cursor-pointer">BlogNest</button>
                  <Dialog>
                     <DialogTrigger>
-                <div className="flex justify-center gap-4 p-1 items-center rounded-2xl bg-zinc-100">
+                <div className="flex justify-center gap-1 md:gap-4 p-1 items-center rounded-md md:rounded-2xl bg-zinc-100">
                     <Search strokeWidth={1}/>
-                    <input placeholder="Search" className="outline-none w-25 md:w-full" />
+                    <a className="md:hidden flex">Search</a>
+                    <input placeholder="Search" className="outline-none hidden md:flex w-full" />
                  </div>
                  </DialogTrigger>
                  <DialogContent showCloseButton={false} >
@@ -185,7 +188,7 @@ const router = useRouter()
             </div>
             <div className="flex justify-center items-center gap-4">
             {/* <Button variant={"outline"} className="flex md:hidden"><Search/></Button> */}
-            <Button className="flex gap-2 md:px-4 font-sans font-bold"><PenLine/><a >Write</a> </Button>
+            <Button onClick={()=> router.push("/create")} className="flex gap-2 md:px-4 font-sans font-bold"><PenLine/><a >Write</a> </Button>
             <Popover>
               <PopoverTrigger onClick={() => {setViewBlur(prev => !prev)}}>
               <Bell/>

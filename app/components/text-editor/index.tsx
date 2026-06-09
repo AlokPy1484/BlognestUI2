@@ -9,7 +9,7 @@ export default function RichTextEditor(){
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: '<p> Hello World </p>',
+    content: '<p> Hello World </p> <img src="https://placehold.co/600x400" />',
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
     editorProps: {

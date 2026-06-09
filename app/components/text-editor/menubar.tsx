@@ -1,7 +1,7 @@
 "use client"
 
 import { Toggle } from "@/components/ui/toggle"
-import { BoldIcon, ItalicIcon } from "lucide-react"
+import { AlignCenter, AlignJustify, AlignLeft, AlignRight, BoldIcon, Heading1, Heading2, Heading3, Highlighter, ItalicIcon, Strikethrough, Text } from "lucide-react"
 
 
 
@@ -14,6 +14,66 @@ export default function Menubar({editor}){
 
 
   const MenuButtons = [
+        {
+      name: "Heading 1",
+      tag: "toggle-h1",
+      icon: <Heading1/>,
+      onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run()
+    },
+        {
+      name: "Headin 2",
+      tag: "toggle-h2",
+      icon: <Heading2/>,
+      onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run()
+    },
+        {
+      name: "Heading 3",
+      tag: "toggle-h3",
+      icon: <Heading3/>,
+      onClick: () => editor.chain().focus().setParagraph().run()
+    },
+        {
+      name: "Paragraph",
+      tag: "toggle-paragraph",
+      icon: <Text/>,
+      onClick: () => editor.chain().focus().setParagraph().run()
+    },
+        {
+      name: "Strike",
+      tag: "toggle-strike",
+      icon: <Strikethrough/>,
+      onClick: () => editor.chain().focus().toggleStrike().run()
+    },
+        {
+      name: "Highlight",
+      tag: "toggle-highlight",
+      icon: <Highlighter/>,
+      onClick: () => editor.chain().focus().toggleHighlight().run()
+    },
+        {
+      name: "Left align",
+      tag: "toggle-leftAlign",
+      icon: <AlignLeft/>,
+      onClick: () => editor.chain().focus().setTextAlign('left').run()
+    },
+        {
+      name: "Center Align",
+      tag: "toggle-centerAlign",
+      icon: <AlignCenter/>,
+      onClick: () => editor.chain().focus().setTextAlign('center').run()
+    },
+        {
+      name: "Right align",
+      tag: "toggle-rightAlign",
+      icon: <AlignRight/>,
+      onClick: () => editor.chain().focus().setTextAlign('right').run()
+    },
+        {
+      name: "Justify align",
+      tag: "toggle-justifyAlign",
+      icon: <AlignJustify/>,
+      onClick: () => editor.chain().focus().setTextAlign('justify').run()
+    },
 
     {
       name: "Italic",
@@ -111,7 +171,7 @@ export default function Menubar({editor}){
           {MenuButtons.map((button) => (
         <Toggle variant="default" aria-label={button.tag}  onClick={button.onClick}>
             {button.icon}
-            {button.name}
+            {/* {button.name} */}
         </Toggle>
             
           ))}

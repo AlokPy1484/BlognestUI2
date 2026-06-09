@@ -12,10 +12,10 @@ interface PeoplesType {
 
 export default function PeopleCard(props:PeoplesType){
 
-
+    const router = useRouter()  
 
     return(
-        <div className="flex justify-between items-center px-1 w-full hover:bg-zinc-100 rounded-md">
+        <div onClick={() => router.push("/profile")} className="flex justify-between items-center px-1 w-full hover:bg-zinc-100 rounded-md cursor-pointer">
             <div className="flex justify-center items-center gap-2">
             <Avatar>
             <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}

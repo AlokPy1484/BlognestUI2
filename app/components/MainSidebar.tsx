@@ -11,6 +11,7 @@ import Toolbar from "./SidebarToolbox"
 import { BadgeInfo, Bell, ChartBarStacked, Folder, FoldHorizontal, Home, MessageCircleQuestionMark, Settings, Shuffle } from "lucide-react"
 import { Separator } from "radix-ui"
 import { Button } from "@/components/ui/button"
+import {motion} from "motion/react"
 
 export function MySidebar() {
 
@@ -33,7 +34,26 @@ export function MySidebar() {
   ]
 
   return (
-    <Sidebar>
+    <Sidebar className="relative group">
+      <motion.div 
+
+      initial={{
+        opacity: 0,
+        backdropFilter: "blur(0px)"
+      }}
+      whileHover={{
+        opacity: 1,
+        backdropFilter: "blur(4px)"
+      }}
+
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut"
+      }}
+
+      className="absolute w-full h-full flex justify-center items-center text-2xl bg-transparent z-100">
+         Coming Soon...
+      </motion.div>
         <SidebarHeader>AlokPandey4592/Blogs/home</SidebarHeader>
       <SidebarContent>
         <SidebarSeparator />
