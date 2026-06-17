@@ -2,89 +2,94 @@
 
 import { Toggle } from "@/components/ui/toggle"
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight, BoldIcon, Heading1, Heading2, Heading3, Highlighter, ItalicIcon, Strikethrough, Text } from "lucide-react"
+import type { Editor } from '@tiptap/core'
 
 
+interface MenubarProps {
+  editor: Editor | null
+}
 
-export default function Menubar({editor}){
 
-    if (!editor) {
+export default function Menubar({ editor }: MenubarProps) {
+
+  if (!editor) {
     return null
   }
 
 
 
   const MenuButtons = [
-        {
+    {
       name: "Heading 1",
       tag: "toggle-h1",
-      icon: <Heading1/>,
+      icon: <Heading1 />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run()
     },
-        {
+    {
       name: "Headin 2",
       tag: "toggle-h2",
-      icon: <Heading2/>,
+      icon: <Heading2 />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run()
     },
-        {
+    {
       name: "Heading 3",
       tag: "toggle-h3",
-      icon: <Heading3/>,
+      icon: <Heading3 />,
       onClick: () => editor.chain().focus().setParagraph().run()
     },
-        {
+    {
       name: "Paragraph",
       tag: "toggle-paragraph",
-      icon: <Text/>,
+      icon: <Text />,
       onClick: () => editor.chain().focus().setParagraph().run()
     },
-        {
+    {
       name: "Strike",
       tag: "toggle-strike",
-      icon: <Strikethrough/>,
+      icon: <Strikethrough />,
       onClick: () => editor.chain().focus().toggleStrike().run()
     },
-        {
+    {
       name: "Highlight",
       tag: "toggle-highlight",
-      icon: <Highlighter/>,
+      icon: <Highlighter />,
       onClick: () => editor.chain().focus().toggleHighlight().run()
     },
-        {
+    {
       name: "Left align",
       tag: "toggle-leftAlign",
-      icon: <AlignLeft/>,
+      icon: <AlignLeft />,
       onClick: () => editor.chain().focus().setTextAlign('left').run()
     },
-        {
+    {
       name: "Center Align",
       tag: "toggle-centerAlign",
-      icon: <AlignCenter/>,
+      icon: <AlignCenter />,
       onClick: () => editor.chain().focus().setTextAlign('center').run()
     },
-        {
+    {
       name: "Right align",
       tag: "toggle-rightAlign",
-      icon: <AlignRight/>,
+      icon: <AlignRight />,
       onClick: () => editor.chain().focus().setTextAlign('right').run()
     },
-        {
+    {
       name: "Justify align",
       tag: "toggle-justifyAlign",
-      icon: <AlignJustify/>,
+      icon: <AlignJustify />,
       onClick: () => editor.chain().focus().setTextAlign('justify').run()
     },
 
     {
       name: "Italic",
       tag: "toggle-italic",
-      icon: <ItalicIcon/>,
+      icon: <ItalicIcon />,
       onClick: () => editor.chain().focus().toggleItalic().run()
     },
     {
       name: "Bold",
       tag: "toggle-bold",
-      icon: <BoldIcon/>,
+      icon: <BoldIcon />,
       onClick: () => editor.chain().focus().toggleBold().run()
     }
   ]
@@ -166,16 +171,16 @@ export default function Menubar({editor}){
         </button>
       </div> */}
 
-        <div className="flex justify-start items-center gap-2">
+      <div className="flex justify-start items-center gap-2">
 
-          {MenuButtons.map((button) => (
-        <Toggle variant="default" aria-label={button.tag}  onClick={button.onClick}>
+        {MenuButtons.map((button) => (
+          <Toggle variant="default" aria-label={button.tag} onClick={button.onClick}>
             {button.icon}
             {/* {button.name} */}
-        </Toggle>
-            
-          ))}
-        </div>
+          </Toggle>
+
+        ))}
+      </div>
 
     </div>
   )
