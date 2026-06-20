@@ -149,7 +149,7 @@ const MainToolbarContent = ({
       {isMobile && <ToolbarSeparator />}
 
       <ToolbarGroup>
-        <ThemeToggle  />
+        <ThemeToggle />
       </ToolbarGroup>
     </>
   )
@@ -246,15 +246,17 @@ export function SimpleEditorViewOnly() {
   }, [isMobile, mobileView])
 
   return (
-    <div className="simple-editor-wrapper">
-      <EditorContext.Provider value={{ editor }}>
-        <EditorContent
-          editor={editor}
-          role="presentation"
-          className="simple-editor-content"
-          contentEditable={false}
-        />
-      </EditorContext.Provider>
+    <div className="flex justify-center items-center w-screen">
+      <div className="simple-editor-wrapper ">
+        <EditorContext.Provider value={{ editor }}>
+          <EditorContent
+            editor={editor}
+            role="presentation"
+            className="simple-editor-content "
+            contentEditable={false}
+          />
+        </EditorContext.Provider>
+      </div>
     </div>
   )
 }

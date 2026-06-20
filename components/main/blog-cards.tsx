@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import PeopleCard, { PeopleCardFeed } from "./PeopleCard";
+import PeopleCard, { PeopleCardFeed } from "./people-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { string } from "zod";
 import { useRouter } from "next/navigation";

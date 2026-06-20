@@ -1,19 +1,19 @@
-import LoginCard from "@/app/components/LogInCard";
-import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import LoginCard from "@/components/auth/login-card";
 
 
 
 
 
 
-export default function LoginPage(){
+
+export default function LoginPage() {
 
 
-    return(
+    return (
 
-        <div className="flex justify-center items-center w-full h-screen">
+        <div className="flex justify-center items-center w-full h-full">
 
-            <LoginCard/>
+            <LoginCard />
 
         </div>
     )

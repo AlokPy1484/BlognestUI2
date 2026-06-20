@@ -13,7 +13,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
 
-  
+
   // const [openSidebar, setOpenSidebar] = useState(true)
 
   // useEffect(() => {
@@ -44,27 +44,26 @@ export default function AuthLayout({
   //       return () => {
   //         window.removeEventListener("resize", handleResize)
   //       }
-        
-      
+
+
   // },[])
 
 
 
   return (
-        <div className="flex justify-center items-center w-full h-screen">
 
-            <FlickeringGrid
-                className="absolute inset-0 z-0 size-full"
-                squareSize={2}
-                gridGap={4}
-                color="#6B7280"
-                maxOpacity={0.5}
-                flickerChance={0.1}
-            />
 
-            {children}
-
-        </div>
+    <div className="flex justify-center items-center w-full h-screen">
+      <FlickeringGrid
+        className="absolute inset-0 z-0 size-full"
+        squareSize={2}
+        gridGap={4}
+        color="#6B7280"
+        maxOpacity={0.5}
+        flickerChance={0.1}
+      />
+      {children}
+    </div>
 
   );
 }

@@ -1,18 +1,18 @@
-import LoginCard from "@/app/components/LogInCard";
-import SignupCard from "@/app/components/SignupCard";
+import SignupCard from "@/components/auth/signup-card";
 
 
 
 
 
 
-export default function SignUpPage(){
+
+export default function SignUpPage() {
 
 
-    return(
+    return (
         <div className="flex justify-center items-center w-full h-screen">
 
-            <SignupCard/>
+            <SignupCard />
 
         </div>
     )
