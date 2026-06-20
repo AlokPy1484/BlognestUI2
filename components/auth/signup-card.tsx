@@ -39,7 +39,6 @@ import {
 import { ArrowBigRight, ArrowBigRightDash, ArrowRight, Eye, EyeClosed, EyeOff, Loader, LockIcon, MailIcon, SearchIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import GoogleIcon from "./AssetIcons"
 import Image from "next/image"
 import { z } from "zod"
 
