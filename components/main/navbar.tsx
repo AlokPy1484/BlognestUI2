@@ -121,22 +121,135 @@ export default function Navbar() {
 
 
     return (
-        <div className=" inset-0 flex justify-between items-center px-2 w-full max-w-screen py-4 bg-white text-black border-b border-black/10 z-100">
-            <div className="flex justify-between items-center gap-2 md:gap-4">
-                <button onClick={() => { router.push("/") }} className="font-serif font-semibold text-2xl cursor-pointer">BlogNest</button>
+        <nav
+            style={{
+                position: "sticky",
+                top: 0,
+                zIndex: 100,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                maxWidth: "100vw",
+                padding: "0 24px",
+                height: "56px",
+                backgroundColor: "rgba(255, 255, 255, 0.85)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                borderBottom: "1px solid #EAEAEA",
+                fontFamily: "'SF Pro Display', 'Geist Sans', 'Helvetica Neue', 'Switzer', sans-serif",
+                color: "#2F3437",
+                boxSizing: "border-box",
+            }}
+        >
+            {/* Left section: Logo + Search */}
+            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                {/* Logo */}
+                <button
+                    onClick={() => { router.push("/") }}
+                    style={{
+                        fontFamily: "'Newsreader', 'Playfair Display', 'Instrument Serif', serif",
+                        fontWeight: 600,
+                        fontSize: "22px",
+                        letterSpacing: "-0.03em",
+                        lineHeight: 1.1,
+                        color: "#111111",
+                        cursor: "pointer",
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        transition: "opacity 200ms ease",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7" }}
+                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1" }}
+                >
+                    BlogNest
+                </button>
+
+                {/* Search trigger */}
                 <Dialog>
                     <DialogTrigger>
-                        <div className="flex justify-center gap-1 md:gap-4 p-1 items-center rounded-md md:rounded-2xl bg-zinc-100">
-                            <Search strokeWidth={1} />
-                            <a className="md:hidden flex">Search</a>
-                            <input placeholder="Search" className="outline-none hidden md:flex w-full" />
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "8px",
+                                padding: "6px 12px",
+                                borderRadius: "8px",
+                                backgroundColor: "#F7F6F3",
+                                border: "1px solid #EAEAEA",
+                                cursor: "pointer",
+                                transition: "background-color 200ms ease, box-shadow 200ms ease",
+                                minWidth: "180px",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "#F0EFEC"
+                                e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)"
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "#F7F6F3"
+                                e.currentTarget.style.boxShadow = "none"
+                            }}
+                        >
+                            <Search size={15} strokeWidth={1.5} style={{ color: "#787774" }} />
+                            <span
+                                style={{
+                                    fontSize: "13px",
+                                    color: "#787774",
+                                    fontFamily: "'SF Pro Display', 'Geist Sans', 'Helvetica Neue', sans-serif",
+                                    letterSpacing: "0.01em",
+                                }}
+                                className="hidden md:inline"
+                            >
+                                Search articles...
+                            </span>
+                            <kbd
+                                style={{
+                                    marginLeft: "auto",
+                                    fontFamily: "'Geist Mono', 'SF Mono', 'JetBrains Mono', monospace",
+                                    fontSize: "11px",
+                                    color: "#787774",
+                                    backgroundColor: "#FFFFFF",
+                                    border: "1px solid #EAEAEA",
+                                    borderRadius: "4px",
+                                    padding: "1px 5px",
+                                    lineHeight: 1.4,
+                                }}
+                                className="hidden md:inline-block"
+                            >
+                                /
+                            </kbd>
                         </div>
                     </DialogTrigger>
                     <DialogContent showCloseButton={false} >
                         <div className="flex flex-col justify-start items-start gap-4 h-[200px] overflow-scroll hide-scrollbar">
-                            <div className="flex justify-start gap-2 p-1 items-center rounded-md bg-zinc-100 w-full">
-                                <Search strokeWidth={2} size={20} className="text-zinc-600" />
-                                <input placeholder="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} className="outline-none w-full" />
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "8px",
+                                    padding: "8px 12px",
+                                    borderRadius: "8px",
+                                    backgroundColor: "#F7F6F3",
+                                    border: "1px solid #EAEAEA",
+                                    width: "100%",
+                                }}
+                            >
+                                <Search strokeWidth={1.5} size={16} style={{ color: "#787774" }} />
+                                <input
+                                    placeholder="Search articles..."
+                                    value={search}
+                                    onChange={(e) => { setSearch(e.target.value) }}
+                                    style={{
+                                        outline: "none",
+                                        width: "100%",
+                                        background: "transparent",
+                                        border: "none",
+                                        fontSize: "14px",
+                                        color: "#2F3437",
+                                        fontFamily: "'SF Pro Display', 'Geist Sans', 'Helvetica Neue', sans-serif",
+                                    }}
+                                />
                             </div>
 
                             {filteredBlog.length > 0 ?
@@ -148,7 +261,18 @@ export default function Navbar() {
                                 :
                                 (<div>
                                     <div className="flex flex-col justify-start items-start md:w-full">
-                                        <h3 className="text-xs text-black/70 pb-2">Recent Search</h3>
+                                        <h3
+                                            style={{
+                                                fontSize: "11px",
+                                                fontWeight: 500,
+                                                textTransform: "uppercase",
+                                                letterSpacing: "0.05em",
+                                                color: "#787774",
+                                                paddingBottom: "8px",
+                                            }}
+                                        >
+                                            Recent Search
+                                        </h3>
 
                                         {recentSearch.map((blog) => (
                                             <Button onMouseEnter={() => setActiveCard(blog)} key={blog.id} variant={"ghost"} className="flex justify-start md:w-[350px] truncate">
@@ -158,7 +282,18 @@ export default function Navbar() {
                                     </div>
 
                                     <div className="flex flex-col justify-start items-start md:w-full">
-                                        <h3 className="text-xs text-black/70 pb-2">Trending Now</h3>
+                                        <h3
+                                            style={{
+                                                fontSize: "11px",
+                                                fontWeight: 500,
+                                                textTransform: "uppercase",
+                                                letterSpacing: "0.05em",
+                                                color: "#787774",
+                                                paddingBottom: "8px",
+                                            }}
+                                        >
+                                            Trending Now
+                                        </h3>
 
                                         {trendingNow.map((blog) => (
                                             <Button onMouseEnter={() => setActiveCard(blog)} key={blog.id} variant={"ghost"} className="flex justify-start md:w-[350px] truncate">{blog.title}</Button>
@@ -166,82 +301,289 @@ export default function Navbar() {
                                     </div>
                                 </div>)}
                         </div>
-                        <DialogFooter className="p-2">
-                            <div className="flex justify-start items-center w-full">
-                                <div className="flex justify-start items-center gap-2 border-r border-black/20 pr-2">
-                                    <Kbd className="font-sans border border-black/10">⏎</Kbd>
-                                    <a className="text-black/60">Go to page</a>
+                        <DialogFooter style={{ padding: "8px 0 0", borderTop: "1px solid #EAEAEA" }}>
+                            <div style={{ display: "flex", alignItems: "center", width: "100%", gap: "8px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px", borderRight: "1px solid #EAEAEA", paddingRight: "12px" }}>
+                                    <kbd
+                                        style={{
+                                            fontFamily: "'Geist Mono', 'SF Mono', 'JetBrains Mono', monospace",
+                                            fontSize: "11px",
+                                            backgroundColor: "#F7F6F3",
+                                            border: "1px solid #EAEAEA",
+                                            borderRadius: "4px",
+                                            padding: "1px 6px",
+                                            color: "#2F3437",
+                                        }}
+                                    >
+                                        Enter
+                                    </kbd>
+                                    <span style={{ fontSize: "12px", color: "#787774" }}>Go to page</span>
                                 </div>
-                                <div className="flex justify-start items-center gap-1 px-2 text-black/60">
-                                    <Avatar className="w-6 h-6">
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#787774" }}>
+                                    <Avatar className="w-5 h-5">
                                         <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}
                                             alt="Profile Picture"
                                             className="rounded-full" />
                                         <AvatarFallback>AP</AvatarFallback>
                                     </Avatar>
-                                    <a>{activeCard.author}</a>
-                                    <a>.</a>
-                                    <a>{activeCard.date}</a>
+                                    <span>{activeCard.author}</span>
+                                    <span style={{ color: "#EAEAEA" }}>|</span>
+                                    <span>{activeCard.date}</span>
                                 </div>
                             </div>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
             </div>
-            <div className="relative flex justify-center items-center gap-4">
-                {/* <Button variant={"outline"} className="flex md:hidden"><Search/></Button> */}
-                <Button onClick={() => router.push("/create")} className="flex gap-2 md:px-4 font-sans font-bold"><PenLine /><a >Write</a> </Button>
+
+            {/* Right section: Write + Bell + Avatar */}
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                {/* Write button — solid #111, 4-6px radius, no shadow */}
+                <button
+                    onClick={() => router.push("/create")}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "7px 16px",
+                        backgroundColor: "#111111",
+                        color: "#FFFFFF",
+                        border: "none",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        fontFamily: "'SF Pro Display', 'Geist Sans', 'Helvetica Neue', sans-serif",
+                        cursor: "pointer",
+                        transition: "background-color 200ms ease, transform 150ms ease",
+                        letterSpacing: "0.01em",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#333333" }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#111111" }}
+                    onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.98)" }}
+                    onMouseUp={(e) => { e.currentTarget.style.transform = "scale(1)" }}
+                >
+                    <PenLine size={14} strokeWidth={1.8} />
+                    <span>Write</span>
+                </button>
+
+                {/* Notification bell */}
                 <Popover>
                     <PopoverTrigger onClick={() => { setViewBlur(prev => !prev) }}>
-                        <Bell />
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "34px",
+                                height: "34px",
+                                borderRadius: "8px",
+                                border: "1px solid transparent",
+                                cursor: "pointer",
+                                transition: "background-color 200ms ease, border-color 200ms ease",
+                                color: "#2F3437",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "#F7F6F3"
+                                e.currentTarget.style.borderColor = "#EAEAEA"
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "transparent"
+                                e.currentTarget.style.borderColor = "transparent"
+                            }}
+                        >
+                            <Bell size={18} strokeWidth={1.5} />
+                        </div>
                         {viewBlur && <div className="fixed inset-0 isolate z-50 bg-black/10 backdrop-blur-xs  w-screen h-screen pointer-events-none"></div>}
                     </PopoverTrigger>
-                    <PopoverContent className="w-[350px] md:w-[400px] outline-none p-2 rounded-md backdrop-blur-md mx-15 my-2 shadow-2xl  border border-black/5 z-100" >
-                        <div className="flex flex-col justify-start items-start gap-2 size-full max-h-[400px] overflow-scroll hide-scrollbar  bg-white p-4 rounded-md border border-black/10 ">
-                            <PopoverHeader className="flex flex-row justify-between items-end w-full">
-                                <h1 className="text-[18px]">Notifications</h1>
-                                <a className="text-xs text-blue-700">Mark all as read</a>
-                            </PopoverHeader>
-                            <Separator />
-                            <div className="flex justify-start items-center gap-4 mt-2  text-xs">
-                                <a className="text-xs border-b border-black pb-1">Inbox</a>
-                                <a className="text-xs pb-1">Unread</a>
+                    <PopoverContent
+                        style={{
+                            width: "380px",
+                            outline: "none",
+                            padding: "0",
+                            borderRadius: "12px",
+                            backgroundColor: "#FFFFFF",
+                            border: "1px solid #EAEAEA",
+                            boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                            margin: "8px 16px",
+                            zIndex: 100,
+                            overflow: "hidden",
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "0",
+                                maxHeight: "420px",
+                                overflowY: "auto",
+                            }}
+                            className="hide-scrollbar"
+                        >
+                            {/* Header */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    padding: "16px 20px 12px",
+                                    borderBottom: "1px solid #EAEAEA",
+                                }}
+                            >
+                                <h1
+                                    style={{
+                                        fontSize: "15px",
+                                        fontWeight: 600,
+                                        color: "#111111",
+                                        letterSpacing: "-0.01em",
+                                    }}
+                                >
+                                    Notifications
+                                </h1>
+                                <button
+                                    style={{
+                                        fontSize: "12px",
+                                        color: "#1F6C9F",
+                                        background: "none",
+                                        border: "none",
+                                        cursor: "pointer",
+                                        fontFamily: "'SF Pro Display', 'Geist Sans', 'Helvetica Neue', sans-serif",
+                                        transition: "opacity 200ms ease",
+                                    }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7" }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1" }}
+                                >
+                                    Mark all as read
+                                </button>
                             </div>
-                            <Separator className="relative bottom-2" />
-                            <div className="flex flex-col justify-start items-start gap-2 ">
-                                <div className="flex flex-col justify-start items-start gap-4">
-                                    <h1 className="text-sm ">Today</h1>
+
+                            {/* Tabs */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    gap: "16px",
+                                    padding: "0 20px",
+                                    borderBottom: "1px solid #EAEAEA",
+                                }}
+                            >
+                                <button
+                                    style={{
+                                        fontSize: "12px",
+                                        fontWeight: 500,
+                                        color: "#111111",
+                                        background: "none",
+                                        border: "none",
+                                        borderBottom: "1.5px solid #111111",
+                                        padding: "10px 0 8px",
+                                        cursor: "pointer",
+                                        letterSpacing: "0.02em",
+                                    }}
+                                >
+                                    Inbox
+                                </button>
+                                <button
+                                    style={{
+                                        fontSize: "12px",
+                                        fontWeight: 500,
+                                        color: "#787774",
+                                        background: "none",
+                                        border: "none",
+                                        borderBottom: "1.5px solid transparent",
+                                        padding: "10px 0 8px",
+                                        cursor: "pointer",
+                                        letterSpacing: "0.02em",
+                                        transition: "color 200ms ease",
+                                    }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.color = "#2F3437" }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.color = "#787774" }}
+                                >
+                                    Unread
+                                </button>
+                            </div>
+
+                            {/* Notification groups */}
+                            <div style={{ padding: "12px 20px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                    <h2
+                                        style={{
+                                            fontSize: "11px",
+                                            fontWeight: 500,
+                                            textTransform: "uppercase",
+                                            letterSpacing: "0.05em",
+                                            color: "#787774",
+                                        }}
+                                    >
+                                        Today
+                                    </h2>
                                     <BlogLikedCard />
                                     <BlogCreatedCard />
                                 </div>
-                                <div className="flex flex-col justify-start items-start gap-4">
-                                    <h1 className="text-sm ">Yesterday</h1>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                    <h2
+                                        style={{
+                                            fontSize: "11px",
+                                            fontWeight: 500,
+                                            textTransform: "uppercase",
+                                            letterSpacing: "0.05em",
+                                            color: "#787774",
+                                        }}
+                                    >
+                                        Yesterday
+                                    </h2>
                                     <CommentCard />
                                     <BlogEditedCard />
                                 </div>
-                                <div className="flex flex-col justify-start items-start gap-4">
-                                    <h1 className="text-sm ">Past 7 days</h1>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                    <h2
+                                        style={{
+                                            fontSize: "11px",
+                                            fontWeight: 500,
+                                            textTransform: "uppercase",
+                                            letterSpacing: "0.05em",
+                                            color: "#787774",
+                                        }}
+                                    >
+                                        Past 7 days
+                                    </h2>
                                     <BlogCreatedCard />
                                 </div>
                             </div>
-                            {/* <div className="flex flex-col justify-center items-center gap-2 w-full h-full mt-8 mb-4">
-                    <div className="p-4 bg-black/10 rounded-full mb-4"><InboxIcon/></div>
-                    <a className="text-[20px]">You're all set</a>
-                    <a className="max-w-[300px] text-black/40 text-center">We will keep you updated on any further notification</a>
-                  </div> */}
-
                         </div>
                     </PopoverContent>
                 </Popover>
-                <Button onClick={() => { router.push("/login") }} className="cursor-pointer rounded-full p-0">
-                    <Avatar>
+
+                {/* Avatar */}
+                <button
+                    onClick={() => { router.push("/login") }}
+                    style={{
+                        padding: 0,
+                        background: "none",
+                        border: "2px solid transparent",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+                        transition: "border-color 200ms ease",
+                        lineHeight: 0,
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#EAEAEA" }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = "transparent" }}
+                >
+                    <Avatar className="w-8 h-8">
                         <AvatarImage src={"https://devwithalok.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FHero1.d3a1a1c3.jpg&w=128&q=75"}
                             alt="Profile Picture"
                             className="rounded-full" />
-                        <AvatarFallback>AP</AvatarFallback>
+                        <AvatarFallback
+                            style={{
+                                fontFamily: "'SF Pro Display', 'Geist Sans', sans-serif",
+                                fontSize: "12px",
+                                fontWeight: 500,
+                                backgroundColor: "#F7F6F3",
+                                color: "#2F3437",
+                            }}
+                        >
+                            AP
+                        </AvatarFallback>
                     </Avatar>
-                </Button>
+                </button>
             </div>
-        </div>
+        </nav>
     )
 }
